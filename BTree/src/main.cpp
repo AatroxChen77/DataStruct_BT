@@ -64,9 +64,11 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
 	if (IsIlleagl_SBT(T))
 		return ERROR;
 	int num = T.maxSize - 3;
+	TElemType e;
 	for (int i = 1; i <= num; i++)
 	{
-		T.elem[i] = (char)('a' + i - 1);
+		e = (char)('a' + i - 1);
+		T.elem[i] = e;
 	}
 	T.lastIndex = num;
 	printf("OK:成功创建");

@@ -84,7 +84,7 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
         DestroySBT(R);
         return ERROR;
     }
-    T.lastIndex = 1; //分解剩下根
+
     for (int i = 1, num = 0; i < GetSBTDepth(T); i++)
     {
         num = pow(2, i); //每一层的节点数量
@@ -92,6 +92,7 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
         memcpy(R.elem + num / 2, T.elem + num + num / 2, num / 2 * sizeof(TElemType));
     }
     //重新计算lastIndex
+    T.lastIndex = 1; //分解剩下根
     L.lastIndex = getLastIndex(L);
     R.lastIndex = getLastIndex(R);
     return OK;
