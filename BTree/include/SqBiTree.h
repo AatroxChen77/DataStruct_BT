@@ -139,6 +139,14 @@ int GetRchild(int par, SqBiTree T);
  */
 int SearchSBTNode(SqBiTree T, TElemType e);
 
+/**
+ * @brief 获取二叉树中最后一个元素的下标
+ *
+ * @param T 获取的二叉树
+ * @return int 返回最后元素的下标，若为空返回0
+ */
+int getLastIndex(SqBiTree T);
+
 /**********************************************打印*******************************************************/
 
 /**

@@ -1,10 +1,11 @@
 #include <SqBiTree.h>
 
+Status BuildSBT(SqBiTree &T);
 void Test_InitSqBiTree(SqBiTree &T);
 void Test_DestroySBT(SqBiTree &T);
 void Test_InsertSBTNode(SqBiTree &T);
 void Test_ModifySBTNode(SqBiTree &T);
-Status BuildSBT(SqBiTree &T);
+void Test_BreakBiTree(SqBiTree &T);
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
 		printf("3.销毁二叉树\n");
 		printf("4.插入新结点\n");
 		printf("5.修改结点\n");
-		printf("6.删除结点\n");
+		printf("6.分解二叉树\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -45,6 +46,9 @@ int main()
 		case 5:
 			Test_ModifySBTNode(T);
 			break;
+		case 6:
+			Test_BreakBiTree(T);
+			break;
 		default:
 			printf("ERROR:请重新输入!\n");
 			break;
@@ -55,14 +59,14 @@ int main()
 	}
 }
 
-Status BuildSBT(SqBiTree &T)
+Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
 {
 	if (IsIlleagl_SBT(T))
 		return ERROR;
 	int num = T.maxSize - 3;
 	for (int i = 1; i <= num; i++)
 	{
-		T.elem[i] = (char)('A' + i - 1);
+		T.elem[i] = (char)('a' + i - 1);
 	}
 	T.lastIndex = num;
 	printf("OK:成功创建");
@@ -124,4 +128,25 @@ void Test_ModifySBTNode(SqBiTree &T)
 		printf("OK:把值为%c的结点的值修改为%c成功!\n", ori, e);
 	else
 		printf("ERROR:把值为%c的结点的值修改为%c失败!\n", ori, e);
+}
+
+void Test_BreakBiTree(SqBiTree &T)
+{
+	SqBiTree L, R;
+	if (BreakBiTree(T, L, R) == OK)
+	{
+		printf("OK:分解成功!:\n");
+		printf("根如下:\n");
+		ShowSBT(T);
+		printf("左子树如下:\n");
+		ShowSBT(L);
+		printf("右子树如下:\n");
+		ShowSBT(R);
+		DestroySBT(L);
+		DestroySBT(R);
+	}
+	else
+	{
+		printf("ERROR:分解失败!\n");
+	}
 }

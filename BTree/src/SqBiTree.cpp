@@ -75,6 +75,26 @@ Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 
 Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 {
+    int depthT = GetSBTDepth(T);
+    InitSqBiTree(L, depthT - 1);
+    InitSqBiTree(R, depthT - 1);
+    if (IsIlleagl_SBT(T) || IsIlleagl_SBT(R) || IsIlleagl_SBT(L))
+    {
+        DestroySBT(L);
+        DestroySBT(R);
+        return ERROR;
+    }
+    T.lastIndex = 1; //分解剩下根
+    for (int i = 1, num = 0; i < GetSBTDepth(T); i++)
+    {
+        num = pow(2, i); //每一层的节点数量
+        memcpy(L.elem + num / 2, T.elem + num, num / 2 * sizeof(TElemType));
+        memcpy(R.elem + num / 2, T.elem + num + num / 2, num / 2 * sizeof(TElemType));
+    }
+    //重新计算lastIndex
+    L.lastIndex = getLastIndex(L);
+    R.lastIndex = getLastIndex(R);
+    return OK;
 }
 
 /**********************************************信息获取*******************************************************/
@@ -154,6 +174,16 @@ int SearchSBTNode(SqBiTree T, TElemType e)
     return 0;
 }
 
+int getLastIndex(SqBiTree T)
+{
+    for (int i = T.maxSize; i > 0; i--)
+    { //从数组后往前遍历，第一个不为空的就是最后元素
+        if (T.elem[i] != '#')
+            return i;
+    }
+    return 0; //若都为空，即二叉树为空，返回0
+}
+
 /**********************************************打印*******************************************************/
 
 int GetSBTDepth(SqBiTree T)
@@ -167,10 +197,9 @@ void ShowSBT(SqBiTree T)
 {
     if (T.lastIndex == 0 || IsIlleagl_SBT(T))
     {
-        printf("ERROR:打印失败!\n");
+        printf(">>二叉树空!\n");
         return;
     }
-    printf("OK:二叉树现状如下:\n");
     int depth = GetSBTDepth(T);
     int pos_x = pow(2, depth - 2) / 4 * 12 - 1; //根位置
     int oriYpos = wherey();                     //光标y原始位置
