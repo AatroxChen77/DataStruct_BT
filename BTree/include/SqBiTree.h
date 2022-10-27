@@ -140,12 +140,36 @@ int GetRchild(int par, SqBiTree T);
 int SearchSBTNode(SqBiTree T, TElemType e);
 
 /**
- * @brief 获取二叉树中最后一个元素的下标
+ * @brief 不使用T.lastIndex获取二叉树中最后一个元素的下标
  *
  * @param T 获取的二叉树
  * @return int 返回最后元素的下标，若为空返回0
  */
 int getLastIndex(SqBiTree T);
+
+/**
+ * @brief 计算度数为0(叶子结点)的结点的个数
+ *
+ * @param T 目标二叉树
+ * @return int 叶子结点的个数
+ */
+int getDegreeZero(SqBiTree T);
+
+/**
+ * @brief 计算度数为1的结点的个数
+ *
+ * @param T 目标二叉树
+ * @return int 度数为1的结点的个数
+ */
+int getDegreeOne(SqBiTree T);
+
+/**
+ * @brief 计算度数为2的结点的个数
+ *
+ * @param T 目标二叉树
+ * @return int 度数为2的结点的个数
+ */
+int getDegreeTwo(SqBiTree T);
 
 /**********************************************打印*******************************************************/
 

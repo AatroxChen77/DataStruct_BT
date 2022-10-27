@@ -6,6 +6,7 @@ void Test_DestroySBT(SqBiTree &T);
 void Test_InsertSBTNode(SqBiTree &T);
 void Test_ModifySBTNode(SqBiTree &T);
 void Test_BreakBiTree(SqBiTree &T);
+void Test_getDegreeN(SqBiTree &T);
 
 int main()
 {
@@ -23,6 +24,7 @@ int main()
 		printf("4.插入新结点\n");
 		printf("5.修改结点\n");
 		printf("6.分解二叉树\n");
+		printf("7.求各度数结点信息\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -48,6 +50,9 @@ int main()
 			break;
 		case 6:
 			Test_BreakBiTree(T);
+			break;
+		case 7:
+			Test_getDegreeN(T);
 			break;
 		default:
 			printf("ERROR:请重新输入!\n");
@@ -151,4 +156,12 @@ void Test_BreakBiTree(SqBiTree &T)
 	{
 		printf("ERROR:分解失败!\n");
 	}
+}
+
+void Test_getDegreeN(SqBiTree &T)
+{
+	printf("该二叉树度数为0的结点有:%d个\n", getDegreeZero(T));
+	printf("该二叉树度数为1的结点有:%d个\n", getDegreeOne(T));
+	printf("该二叉树度数为2的结点有:%d个\n", getDegreeTwo(T));
+	printf("该二叉树总结点数有:%d个\n", T.lastIndex);
 }

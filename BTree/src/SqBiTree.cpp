@@ -177,12 +177,62 @@ int SearchSBTNode(SqBiTree T, TElemType e)
 
 int getLastIndex(SqBiTree T)
 {
+    if (IsIlleagl_SBT(T))
+        return 0;
     for (int i = T.maxSize; i > 0; i--)
     { //从数组后往前遍历，第一个不为空的就是最后元素
         if (T.elem[i] != '#')
             return i;
     }
     return 0; //若都为空，即二叉树为空，返回0
+}
+
+int getDegreeZero(SqBiTree T)
+{
+    if (IsIlleagl_SBT(T))
+        return 0;
+    int num = 0;
+    for (int i = 1; i <= T.lastIndex; i++)
+    {
+        //叶子结点即没有左右子树的结点，此时其左右孩子的下标应返回0
+        if (GetLchild(i, T) == 0 && GetRchild(i, T) == 0)
+            num++;
+    }
+    return num;
+}
+
+int getDegreeOne(SqBiTree T)
+{
+    if (IsIlleagl_SBT(T))
+        return 0;
+    int num = 0;
+    int l = 0, r = 0;
+    for (int i = 1; i <= T.lastIndex; i++)
+    {
+        l = GetLchild(i, T);
+        r = GetRchild(i, T);
+        //度数为1的节点即有且仅有一个子树
+        if (l == 0 && r != 0 || r == 0 && l != 0)
+            num++;
+    }
+    return num;
+}
+
+int getDegreeTwo(SqBiTree T)
+{
+    if (IsIlleagl_SBT(T))
+        return 0;
+    int num = 0;
+    int l = 0, r = 0;
+    for (int i = 1; i <= T.lastIndex; i++)
+    {
+        l = GetLchild(i, T);
+        r = GetRchild(i, T);
+        //度数为1的节点即有且仅有一个子树
+        if (l != 0 && r != 0)
+            num++;
+    }
+    return num;
 }
 
 /**********************************************打印*******************************************************/
