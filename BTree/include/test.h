@@ -12,5 +12,6 @@ void Test_BreakBiTree(SqBiTree &T);
 
 void Test_getDegreeN(SqBiTree T);
 void Test_CountDepthNum(SqBiTree T);
+void Test_Traverse(SqBiTree T);
 
 #endif

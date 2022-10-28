@@ -139,7 +139,7 @@ Status Is_Desendant(SqBiTree T, int u, int v)
     return FALSE;
 }
 
-int GetPar(int child, SqBiTree T)
+int GetPar(SqBiTree T, int child)
 {
     if (IsIllegal_SBTNode(T, child) || IsIllegal_SBTNode(T, child / 2))
         return 0;
@@ -147,7 +147,7 @@ int GetPar(int child, SqBiTree T)
         return child / 2;
 }
 
-int GetLchild(int par, SqBiTree T)
+int GetLchild(SqBiTree T, int par)
 {
     if (IsIllegal_SBTNode(T, par) || 2 * par > T.lastIndex || IsIllegal_SBTNode(T, 2 * par))
         return 0;
@@ -155,7 +155,7 @@ int GetLchild(int par, SqBiTree T)
         return 2 * par;
 }
 
-int GetRchild(int par, SqBiTree T)
+int GetRchild(SqBiTree T, int par)
 {
     if (IsIllegal_SBTNode(T, par) || (2 * par + 1) > T.lastIndex || IsIllegal_SBTNode(T, 2 * par + 1))
         return 0;
@@ -195,7 +195,7 @@ int getDegreeZero(SqBiTree T)
     for (int i = 1; i <= T.lastIndex; i++)
     {
         //叶子结点即没有左右子树的结点，此时其左右孩子的下标应返回0
-        if (GetLchild(i, T) == 0 && GetRchild(i, T) == 0)
+        if (GetLchild(T, i) == 0 && GetRchild(T, i) == 0)
             num++;
     }
     return num;
@@ -209,8 +209,8 @@ int getDegreeOne(SqBiTree T)
     int l = 0, r = 0;
     for (int i = 1; i <= T.lastIndex; i++)
     {
-        l = GetLchild(i, T);
-        r = GetRchild(i, T);
+        l = GetLchild(T, i);
+        r = GetRchild(T, i);
         //度数为1的节点即有且仅有一个子树
         if (l == 0 && r != 0 || r == 0 && l != 0)
             num++;
@@ -226,8 +226,8 @@ int getDegreeTwo(SqBiTree T)
     int l = 0, r = 0;
     for (int i = 1; i <= T.lastIndex; i++)
     {
-        l = GetLchild(i, T);
-        r = GetRchild(i, T);
+        l = GetLchild(T, i);
+        r = GetRchild(T, i);
         //度数为1的节点即有且仅有一个子树
         if (l != 0 && r != 0)
             num++;
@@ -246,6 +246,44 @@ int CountDepthNum(SqBiTree T, int depth)
             sum++;
     }
     return sum;
+}
+
+void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+{
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+        return;
+    int lChild = GetLchild(T, root);
+    int rChild = GetRchild(T, root);
+    visit(T, root);
+    PreTraverse(T, lChild, visit);
+    PreTraverse(T, rChild, visit);
+}
+void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+{
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+        return;
+    int lChild = GetLchild(T, root);
+    int rChild = GetRchild(T, root);
+    MidTraverse(T, lChild, visit);
+    visit(T, root);
+    MidTraverse(T, rChild, visit);
+}
+void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+{
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+        return;
+    int lChild = GetLchild(T, root);
+    int rChild = GetRchild(T, root);
+    PostTraverse(T, lChild, visit);
+    PostTraverse(T, rChild, visit);
+    visit(T, root);
+}
+Status VisitNode(SqBiTree T, int p)
+{
+    if (IsIllegal_SBTNode(T, p))
+        return ERROR;
+    printf("%c|", T.elem[p]);
+    return OK;
 }
 
 /**********************************************打印*******************************************************/
@@ -287,8 +325,8 @@ void PirntSBT(SqBiTree T, int p, int depth)
 
     printf("%c", T.elem[p]); //调用pirntBiTree之前已经定好了根的位置，即wherex()
 
-    int lchild = GetLchild(p, T);
-    int rchild = GetRchild(p, T);
+    int lchild = GetLchild(T, p);
+    int rchild = GetRchild(T, p);
 
     if (!IsIllegal_SBTNode(T, lchild))
     {

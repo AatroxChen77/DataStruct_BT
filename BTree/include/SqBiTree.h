@@ -106,29 +106,29 @@ Status Is_Desendant(SqBiTree T, int u, int v);
 /**
  * @brief 获取某孩子结点的双亲结点下标
  *
- * @param child 孩子节点下标
  * @param T 该孩子结点所在的二叉树
+ * @param child 孩子节点下标
  * @return int 若找到，返回双亲结点的下标；否则，返回0
  */
-int GetPar(int child, SqBiTree T);
+int GetPar(SqBiTree T, int child);
 
 /**
  * @brief 获取某双亲结点的左孩子结点下标
  *
- * @param par 双亲结点下标
  * @param T 该双亲结点所在的二叉树
+ * @param par 双亲结点下标
  * @return 返回左孩子结点的下标；否则，返回0
  */
-int GetLchild(int par, SqBiTree T);
+int GetLchild(SqBiTree T, int par);
 
 /**
  * @brief 获取某双亲结点的右孩子结点下标
  *
- * @param par 双亲结点下标
  * @param T 该双亲结点所在的二叉树
+ * @param par 双亲结点下标
  * @return int 若找到，返回右孩子结点的下标；否则，返回0
  */
-int GetRchild(int par, SqBiTree T);
+int GetRchild(SqBiTree T, int par);
 
 /**
  * @brief 搜索顺序二叉树中值为e的结点
@@ -179,6 +179,11 @@ int getDegreeTwo(SqBiTree T);
  * @return int 某深度的结点个数
  */
 int CountDepthNum(SqBiTree T, int depth);
+
+void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+Status VisitNode(SqBiTree T, int p);
 
 /**********************************************打印*******************************************************/
 

@@ -110,3 +110,48 @@ void Test_CountDepthNum(SqBiTree T)
     scanf("%d", &depth);
     printf("该二叉树在深度%d的结点个数为:%d个\n", depth, CountDepthNum(T, depth));
 }
+
+void Test_Traverse(SqBiTree T)
+{
+    system("cls");
+    int choice = 0;
+    while (1)
+    {
+
+        ShowSBT(T);
+        printf("【顺序二叉树测试:遍历】\n");
+        printf("0.返回\n");
+        printf("1.先序遍历\n");
+        printf("2.中序遍历\n");
+        printf("3.后序遍历\n");
+        printf("4.层次遍历\n");
+        printf(">>请输入相应操作的序号:\n");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 0:
+            return;
+            break;
+        case 1:
+            PreTraverse(T, 1, VisitNode);
+            printf("\n");
+            break;
+        case 2:
+            MidTraverse(T, 1, VisitNode);
+            printf("\n");
+            break;
+        case 3:
+            PostTraverse(T, 1, VisitNode);
+            printf("\n");
+            break;
+        case 4:
+            printf("\n");
+            break;
+        default:
+            printf("ERROR:请重新输入!\n");
+            break;
+        }
+        system("pause");
+        system("cls");
+    }
+}
