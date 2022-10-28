@@ -180,9 +180,48 @@ int getDegreeTwo(SqBiTree T);
  */
 int CountDepthNum(SqBiTree T, int depth);
 
+/**
+ * @brief 先序遍历二叉树
+ *
+ * @param T 目标二叉树
+ * @param root 当前递归层次的根结点下标
+ * @param visit 访问函数
+ */
 void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+
+/**
+ * @brief 中序遍历二叉树
+ *
+ * @param T 目标二叉树
+ * @param root 当前递归层次的根结点下标
+ * @param visit 访问函数
+ */
 void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+
+/**
+ * @brief 后序遍历二叉树
+ *
+ * @param T 目标二叉树
+ * @param root 当前递归层次的根结点下标
+ * @param visit 访问函数
+ */
 void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+
+/**
+ * @brief 层次遍历二叉树
+ *
+ * @param T 目标二叉树
+ * @param visit 访问函数
+ */
+void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p));
+
+/**
+ * @brief 遍历用访问函数
+ *
+ * @param T 目标二叉树
+ * @param p 当前访问结点的下标
+ * @return Status
+ */
 Status VisitNode(SqBiTree T, int p);
 
 /**********************************************打印*******************************************************/

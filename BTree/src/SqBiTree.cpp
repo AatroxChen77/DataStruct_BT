@@ -258,6 +258,7 @@ void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
     PreTraverse(T, lChild, visit);
     PreTraverse(T, rChild, visit);
 }
+
 void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
     if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
@@ -268,6 +269,7 @@ void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
     visit(T, root);
     MidTraverse(T, rChild, visit);
 }
+
 void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
     if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
@@ -278,6 +280,16 @@ void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
     PostTraverse(T, rChild, visit);
     visit(T, root);
 }
+
+void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p))
+{
+    for (int i = 1; i <= T.lastIndex; i++)
+    {
+        if (!IsIllegal_SBTNode(T, i))
+            visit(T, i);
+    }
+}
+
 Status VisitNode(SqBiTree T, int p)
 {
     if (IsIllegal_SBTNode(T, p))

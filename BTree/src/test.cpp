@@ -145,6 +145,7 @@ void Test_Traverse(SqBiTree T)
             printf("\n");
             break;
         case 4:
+            LevelTraverse(T, VisitNode);
             printf("\n");
             break;
         default:
