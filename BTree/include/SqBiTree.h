@@ -171,6 +171,15 @@ int getDegreeOne(SqBiTree T);
  */
 int getDegreeTwo(SqBiTree T);
 
+/**
+ * @brief 获取二叉树某深度的结点个数
+ *
+ * @param T 目标二叉树
+ * @param depth 指定的深度
+ * @return int 某深度的结点个数
+ */
+int CountDepthNum(SqBiTree T, int depth);
+
 /**********************************************打印*******************************************************/
 
 /**

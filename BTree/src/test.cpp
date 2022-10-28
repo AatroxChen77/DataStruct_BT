@@ -94,10 +94,19 @@ void Test_BreakBiTree(SqBiTree &T)
     }
 }
 
-void Test_getDegreeN(SqBiTree &T)
+void Test_getDegreeN(SqBiTree T)
 {
     printf("该二叉树度数为0的结点有:%d个\n", getDegreeZero(T));
     printf("该二叉树度数为1的结点有:%d个\n", getDegreeOne(T));
     printf("该二叉树度数为2的结点有:%d个\n", getDegreeTwo(T));
     printf("该二叉树总结点数有:%d个\n", T.lastIndex);
+}
+
+void Test_CountDepthNum(SqBiTree T)
+{
+    int depth = 0;
+    printf(">>请输入要查询的深度:\n");
+    fflush(stdin);
+    scanf("%d", &depth);
+    printf("该二叉树在深度%d的结点个数为:%d个\n", depth, CountDepthNum(T, depth));
 }

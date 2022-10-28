@@ -235,6 +235,19 @@ int getDegreeTwo(SqBiTree T)
     return num;
 }
 
+int CountDepthNum(SqBiTree T, int depth)
+{
+    if (IsIlleagl_SBT(T))
+        return 0;
+    int begin = pow(2, depth - 1), end = pow(2, depth) - 1, sum = 0;
+    for (int i = begin; i <= end; i++)
+    {
+        if (!IsIllegal_SBTNode(T, i))
+            sum++;
+    }
+    return sum;
+}
+
 /**********************************************´òÓ¡*******************************************************/
 
 int GetSBTDepth(SqBiTree T)

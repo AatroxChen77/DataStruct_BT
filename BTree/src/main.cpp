@@ -18,6 +18,7 @@ int main()
 		printf("5.修改结点\n");
 		printf("6.分解二叉树\n");
 		printf("7.求各度数结点信息\n");
+		printf("8.求某深度结点信息\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -46,6 +47,9 @@ int main()
 			break;
 		case 7:
 			Test_getDegreeN(T);
+			break;
+		case 8:
+			Test_CountDepthNum(T);
 			break;
 		default:
 			printf("ERROR:请重新输入!\n");
