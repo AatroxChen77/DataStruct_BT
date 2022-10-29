@@ -12,12 +12,13 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
         T.elem[i] = e;
     }
     T.lastIndex = num;
-    printf("OK:成功创建");
     return OK;
 }
 
 void Test_InitSqBiTree(SqBiTree &T)
 {
+    printf("\n【顺序存储二叉树测试:初始化】\n");
+
     int MaxDepth_SBT = 0;
     printf(">>请输入二叉树最大层数\n");
     scanf("%d", &MaxDepth_SBT);
@@ -33,6 +34,8 @@ void Test_InitSqBiTree(SqBiTree &T)
 
 void Test_DestroySBT(SqBiTree &T)
 {
+    printf("\n【顺序存储二叉树测试:销毁】\n");
+
     if (DestroySBT(T) == OK)
         printf("OK:销毁成功!\n");
     else
@@ -41,6 +44,8 @@ void Test_DestroySBT(SqBiTree &T)
 
 void Test_InsertSBTNode(SqBiTree &T)
 {
+    printf("\n【顺序存储二叉树测试:插入结点】\n");
+
     TElemType e, par;
     char tag = '#';
     printf(">>请输入要插入的新结点的值:\n");
@@ -60,6 +65,8 @@ void Test_InsertSBTNode(SqBiTree &T)
 
 void Test_ModifySBTNode(SqBiTree &T)
 {
+    printf("\n【顺序存储二叉树测试:修改结点】\n");
+
     TElemType ori, e;
     printf(">>请输入要修改的结点的的值:\n");
     fflush(stdin);
@@ -75,6 +82,8 @@ void Test_ModifySBTNode(SqBiTree &T)
 
 void Test_BreakBiTree(SqBiTree &T)
 {
+    printf("\n【顺序存储二叉树测试:分解】\n");
+
     SqBiTree L, R;
     if (BreakBiTree(T, L, R) == OK)
     {
@@ -96,6 +105,8 @@ void Test_BreakBiTree(SqBiTree &T)
 
 void Test_getDegreeN(SqBiTree T)
 {
+    printf("\n【顺序存储二叉树测试:获取各读度数结点个数】\n");
+
     printf("该二叉树度数为0的结点有:%d个\n", getDegreeZero(T));
     printf("该二叉树度数为1的结点有:%d个\n", getDegreeOne(T));
     printf("该二叉树度数为2的结点有:%d个\n", getDegreeTwo(T));
@@ -104,6 +115,8 @@ void Test_getDegreeN(SqBiTree T)
 
 void Test_CountDepthNum(SqBiTree T)
 {
+    printf("\n【顺序存储二叉树测试:查询某深度结点个数】\n");
+
     int depth = 0;
     printf(">>请输入要查询的深度:\n");
     fflush(stdin);
@@ -113,13 +126,14 @@ void Test_CountDepthNum(SqBiTree T)
 
 void Test_Traverse(SqBiTree T)
 {
+
     system("cls");
     int choice = 0;
     while (1)
     {
 
         ShowSBT(T);
-        printf("【顺序二叉树测试:遍历】\n");
+        printf("\n【顺序存储二叉树测试:初始化】\n");
         printf("0.返回\n");
         printf("1.先序遍历\n");
         printf("2.中序遍历\n");
