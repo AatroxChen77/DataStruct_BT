@@ -17,10 +17,11 @@ int main()
 		printf("4.插入新结点\n");
 		printf("5.修改结点\n");
 		printf("6.分解二叉树\n");
-		printf("7.查找结点\n");
-		printf("8.求各度数结点个数\n");
-		printf("9.求某深度结点个数\n");
-		printf("10.遍历\n");
+		printf("7.替代子树\n");
+		printf("8.查找结点\n");
+		printf("9.求各度数结点个数\n");
+		printf("10.求某深度结点个数\n");
+		printf("11.遍历\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -51,15 +52,18 @@ int main()
 			Test_BreakBiTree(T);
 			break;
 		case 7:
-			Test_SearchSBTNode(T);
+			// Test_BreakBiTree(T);
 			break;
 		case 8:
-			Test_getDegreeN(T);
+			Test_SearchSBTNode(T);
 			break;
 		case 9:
-			Test_CountDepthNum(T);
+			Test_getDegreeN(T);
 			break;
 		case 10:
+			Test_CountDepthNum(T);
+			break;
+		case 11:
 			Test_Traverse(T);
 			break;
 		default:

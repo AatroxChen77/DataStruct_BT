@@ -302,7 +302,7 @@ Status VisitNode(SqBiTree T, int p)
 
 int GetSBTDepth(SqBiTree T)
 {
-    if (NULL == T.elem || T.lastIndex <= 0)
+    if (IsIlleagl_SBT(T))
         return 0;
     return floor(log2(T.lastIndex)) + 1;
 }
@@ -320,6 +320,7 @@ void ShowSBT(SqBiTree T)
     gotoxy(pos_x, wherey());
     PirntSBT(T, 1, depth);
     gotoxy(0, oriYpos + depth * 2); //光标回到行首
+    printf(">>目前可用最大层数:%d\n", int(floor(log2(T.maxSize)) + 1));
 }
 
 void PirntSBT(SqBiTree T, int p, int depth)
