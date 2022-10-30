@@ -4,14 +4,14 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
 {
     if (IsIlleagl_SBT(T))
         return ERROR;
-    int num = T.maxSize - 3;
-    TElemType e;
-    for (int i = 1; i <= num; i++)
-    {
-        e = (char)('a' + i - 1);
-        T.elem[i] = e;
-    }
+    int num = T.maxSize - 3, i;
     T.lastIndex = num;
+
+    for (i = 1; i <= 26 && num > 0; i++, num--)
+        T.elem[i] = (char)('a' + i - 1);
+    for (; num > 0; i++, num--)
+        T.elem[i] = (char)('A' + i - 27);
+
     return OK;
 }
 
@@ -101,6 +101,22 @@ void Test_BreakBiTree(SqBiTree &T)
     {
         printf("ERROR:分解失败!\n");
     }
+}
+
+void Test_SearchSBTNode(SqBiTree T)
+{
+    printf("\n【顺序存储二叉树测试:查找结点】\n");
+
+    TElemType e;
+    int i;
+    printf(">>请输入要查找的结点的的值:\n");
+    fflush(stdin);
+    scanf("%c", &e);
+    i = SearchSBTNode(T, e);
+    if (i != 0)
+        printf("OK:查找值为%c的结点成功,下标为%d\n", e, i);
+    else
+        printf("ERROR:查找值为%c的结点失败!\n", e);
 }
 
 void Test_getDegreeN(SqBiTree T)
