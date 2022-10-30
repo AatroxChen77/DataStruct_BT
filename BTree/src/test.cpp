@@ -15,6 +15,57 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
     return OK;
 }
 
+Status EditSBT(SqBiTree &T)
+{
+    int choice = 0;
+    while (1)
+    {
+        ShowSBT(T);
+        printf("\n【编辑二叉树】\n");
+        printf("0.退出\n");
+        printf("1.初始化二叉树\n");
+        printf("2.速建二叉树实例\n");
+        printf("3.销毁二叉树\n");
+        printf("4.插入新结点\n");
+        printf("5.修改结点\n");
+        printf("6.删除叶子结点\n");
+
+        fflush(stdin);
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 0:
+            return OK;
+        case 1:
+            Test_InitSqBiTree(T);
+            break;
+        case 2:
+            if (BuildSBT(T) == OK)
+                printf("OK:成功创建\n");
+            else
+                printf("ERROR:初始化失败!\n");
+            break;
+        case 3:
+            Test_DestroySBT(T);
+            break;
+        case 4:
+            Test_InsertSBTNode(T);
+            break;
+        case 5:
+            Test_ModifySBTNode(T);
+            break;
+        case 6:
+            printf(">>开发中\n");
+            break;
+        default:
+            printf("ERROR:错误选择!\n");
+            break;
+        }
+        system("pause");
+        system("cls");
+    }
+}
+
 void Test_InitSqBiTree(SqBiTree &T)
 {
     printf("\n【顺序存储二叉树测试:初始化】\n");
@@ -22,7 +73,7 @@ void Test_InitSqBiTree(SqBiTree &T)
     int MaxDepth_SBT = 0;
     printf(">>请输入二叉树最大层数\n");
     scanf("%d", &MaxDepth_SBT);
-    printf(">>需要申请%d个单位元素的空间!\n", CountMaxNum(MaxDepth_SBT));
+    printf(">>成功申请%d个单位元素的空间!\n", CountMaxNum(MaxDepth_SBT));
     if (InitSqBiTree(T, MaxDepth_SBT) == OK)
     {
         printf("OK:初始化成功!\n");
@@ -101,6 +152,55 @@ void Test_BreakBiTree(SqBiTree &T)
     {
         printf("ERROR:分解失败!\n");
     }
+}
+
+void Test_ReplaceSBT(SqBiTree &T)
+{
+    int choice = 0;
+    SqBiTree re;
+    char tag = '#';
+    printf("\n【顺序存储二叉树测试:替换子树】\n");
+    printf(">>编辑替换用树\n");
+    printf("0.取消\n");
+    printf("1.使用默认子树\n");
+    printf("2.自定义\n");
+    fflush(stdin);
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 0:
+        return;
+    case 1:
+        InitSqBiTree(re, 2);
+        InsertSBTNode(re, 'A', '#', '#');
+        InsertSBTNode(re, 'B', 'A', 'L');
+        InsertSBTNode(re, 'C', 'A', 'R');
+        break;
+    case 2:
+        //编辑二叉树函数并返回
+        EditSBT(re);
+        break;
+    default:
+        printf("ERROR:错误输入!\n");
+        break;
+    }
+
+    //选择方向
+    printf(">>请输入要替换的方向:'L'或'R':\n");
+    fflush(stdin);
+    scanf("%c", &tag);
+
+    //替换
+    if (ReplaceSBT(T, tag, re) == OK)
+    {
+        printf("OK:成功替换原树%c子树!\n", tag);
+        printf(">>原树现状:\n");
+        ShowSBT(T);
+        printf(">>原%c子树:\n", tag);
+        ShowSBT(re);
+    }
+    else
+        printf("ERROR:替换原树%c子树失败!\n", tag);
 }
 
 void Test_SearchSBTNode(SqBiTree T)

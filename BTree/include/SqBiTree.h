@@ -66,6 +66,16 @@ Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e);
  */
 Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R);
 
+/**
+ * @brief 替换熟悉怒二叉树的某子树,并返回原子树
+ *
+ * @param T 被执行替换操作的二叉树
+ * @param tag 替换的方向 'L':左、'R':右
+ * @param re 替换用树,返回原子树
+ * @return Status 替换结果信息
+ */
+Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re);
+
 /**********************************************信息获取*******************************************************/
 
 /**

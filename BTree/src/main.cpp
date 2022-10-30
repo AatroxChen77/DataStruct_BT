@@ -4,10 +4,11 @@
 int main()
 {
 	SqBiTree T;
+	int choice = 0;
 
 	while (1)
 	{
-		int choice = 0;
+
 		ShowSBT(T);
 		printf("\n¡¾Ë³Ðò´æ´¢¶þ²æÊ÷²âÊÔÏµÍ³¡¿\n");
 		printf("0.ÍË³ö\n");
@@ -52,7 +53,7 @@ int main()
 			Test_BreakBiTree(T);
 			break;
 		case 7:
-			// Test_BreakBiTree(T);
+			Test_ReplaceSBT(T);
 			break;
 		case 8:
 			Test_SearchSBTNode(T);

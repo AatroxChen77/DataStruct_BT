@@ -98,6 +98,23 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
     return OK;
 }
 
+Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
+{
+
+    if (IsIlleagl_SBT(T) || IsIlleagl_SBT(re)) //原树或替换用树异常
+        return ERROR;
+
+    //若替换后树深度超出最大可用深度,返回错误
+    if (GetSBTDepth(re) > int(floor(log2(T.maxSize)) + 1))
+        return ERROR;
+
+    if (tag == 'L')
+    { //替换左子树
+    }
+
+    return OK;
+}
+
 /**********************************************信息获取*******************************************************/
 
 int CountMaxNum(int maxdepth) // 1 2 4 8
@@ -311,7 +328,7 @@ void ShowSBT(SqBiTree T)
 {
     if (T.lastIndex == 0 || IsIlleagl_SBT(T))
     {
-        printf(">>二叉树空!\n");
+        printf(">>二叉树空或异常!\n");
         return;
     }
     int depth = GetSBTDepth(T);
