@@ -25,7 +25,16 @@ typedef struct
  * @param depth 顺序二叉树最大深度（用于计算数组大小）
  * @return 初始化结果信息
  */
-Status InitSqBiTree(SqBiTree &T, int depth);
+Status InitSBT(SqBiTree &T, int depth);
+
+/**
+ * @brief 扩建顺序二叉树最大可用层数
+ *
+ * @param T 要扩建的二叉树
+ * @param extension 扩建层数
+ * @return Status 扩建结果信息
+ */
+Status ExtendSBT(SqBiTree &T, int extension);
 
 /**
  * @brief 在二叉树下标p处插入值为e的结点
@@ -243,6 +252,14 @@ Status VisitNode(SqBiTree T, int p);
  * @return int 深度
  */
 int GetSBTDepth(SqBiTree T);
+
+/**
+ * @brief 计算顺序二叉树最大可用深度
+ *
+ * @param T 要计算最大可用深度的二叉树
+ * @return int 最大可用深度
+ */
+int GetSBTMaxSizeDepth(SqBiTree T);
 
 /**
  * @brief 展示二叉树

@@ -37,7 +37,7 @@ Status EditSBT(SqBiTree &T)
         case 0:
             return OK;
         case 1:
-            Test_InitSqBiTree(T);
+            Test_InitSBT(T);
             break;
         case 2:
             if (BuildSBT(T) == OK)
@@ -66,21 +66,36 @@ Status EditSBT(SqBiTree &T)
     }
 }
 
-void Test_InitSqBiTree(SqBiTree &T)
+void Test_InitSBT(SqBiTree &T)
 {
     printf("\n【顺序存储二叉树测试:初始化】\n");
 
     int MaxDepth_SBT = 0;
     printf(">>请输入二叉树最大层数\n");
     scanf("%d", &MaxDepth_SBT);
-    printf(">>成功申请%d个单位元素的空间!\n", CountMaxNum(MaxDepth_SBT));
-    if (InitSqBiTree(T, MaxDepth_SBT) == OK)
+    printf(">>需要申请%d个单位元素的空间!\n", CountMaxNum(MaxDepth_SBT));
+    if (InitSBT(T, MaxDepth_SBT) == OK)
     {
         printf("OK:初始化成功!\n");
-        ShowSBT(T);
     }
     else
         printf("ERROR:初始化失败!\n");
+}
+
+void Test_ExtendSBT(SqBiTree &T)
+{
+    printf("\n【顺序存储二叉树测试:扩建】\n");
+
+    int extension = 0;
+    printf(">>请输入扩建层数\n");
+    scanf("%d", &extension);
+    printf(">>需要新申请%d个单位元素的空间!\n", CountMaxNum(extension + GetSBTMaxSizeDepth(T)) - CountMaxNum(GetSBTMaxSizeDepth(T)));
+    if (ExtendSBT(T, extension) == OK)
+    {
+        printf("OK:扩建%d层成功!\n", extension);
+    }
+    else
+        printf("ERROR:扩建%d层失败!\n", extension);
 }
 
 void Test_DestroySBT(SqBiTree &T)
@@ -171,7 +186,7 @@ void Test_ReplaceSBT(SqBiTree &T)
     case 0:
         return;
     case 1:
-        InitSqBiTree(re, 2);
+        InitSBT(re, 2);
         InsertSBTNode(re, 'A', '#', '#');
         InsertSBTNode(re, 'B', 'A', 'L');
         InsertSBTNode(re, 'C', 'A', 'R');

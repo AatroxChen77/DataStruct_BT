@@ -5,7 +5,8 @@
 
 Status BuildSBT(SqBiTree &T);
 Status EditSBT(SqBiTree &T);
-void Test_InitSqBiTree(SqBiTree &T);
+void Test_InitSBT(SqBiTree &T);
+void Test_ExtendSBT(SqBiTree &T);
 void Test_DestroySBT(SqBiTree &T);
 void Test_InsertSBTNode(SqBiTree &T);
 void Test_ModifySBTNode(SqBiTree &T);

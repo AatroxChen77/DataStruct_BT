@@ -1,7 +1,7 @@
 #include <SqBiTree.h>
 
 /**********************************************基本操作*******************************************************/
-Status InitSqBiTree(SqBiTree &T, int depth)
+Status InitSBT(SqBiTree &T, int depth)
 {
     if (!IsIlleagl_SBT(T))
         DestroySBT(T);
@@ -13,6 +13,19 @@ Status InitSqBiTree(SqBiTree &T, int depth)
         T.elem[i] = '#';
     T.maxSize = maxNum;
     T.lastIndex = 0;
+    return OK;
+}
+
+Status ExtendSBT(SqBiTree &T, int extension)
+{
+    if (IsIlleagl_SBT(T))
+        return ERROR;
+    int maxNum = CountMaxNum(GetSBTMaxSizeDepth(T) + extension);
+    if (NULL == realloc(T.elem, (maxNum + 1) * sizeof(TElemType)))
+        return OVERFLOW;
+    for (int i = T.maxSize + 1; i <= maxNum; i++)
+        T.elem[i] = '#';
+    T.maxSize = maxNum;
     return OK;
 }
 
@@ -76,8 +89,8 @@ Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 {
     int depthT = GetSBTDepth(T);
-    InitSqBiTree(L, depthT - 1);
-    InitSqBiTree(R, depthT - 1);
+    InitSBT(L, depthT - 1);
+    InitSBT(R, depthT - 1);
     if (IsIlleagl_SBT(T) || IsIlleagl_SBT(R) || IsIlleagl_SBT(L))
     {
         DestroySBT(L);
@@ -105,8 +118,8 @@ Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
         return ERROR;
 
     //若替换后树深度超出最大可用深度,返回错误
-    if (GetSBTDepth(re) > int(floor(log2(T.maxSize)) + 1))
-        return ERROR;
+    // if (GetSBTDepth(re) > int(floor(log2(T.maxSize)) + 1))
+    //     return ERROR;
 
     if (tag == 'L')
     { //替换左子树
@@ -324,20 +337,30 @@ int GetSBTDepth(SqBiTree T)
     return floor(log2(T.lastIndex)) + 1;
 }
 
+int GetSBTMaxSizeDepth(SqBiTree T)
+{
+    if (IsIlleagl_SBT(T))
+        return 0;
+    return floor(log2(T.maxSize)) + 1;
+}
+
 void ShowSBT(SqBiTree T)
 {
     if (T.lastIndex == 0 || IsIlleagl_SBT(T))
     {
         printf(">>二叉树空或异常!\n");
-        return;
     }
-    int depth = GetSBTDepth(T);
-    int pos_x = pow(2, depth - 2) / 4 * 12 - 1; //根位置
-    int oriYpos = wherey();                     //光标y原始位置
-    gotoxy(pos_x, wherey());
-    PirntSBT(T, 1, depth);
-    gotoxy(0, oriYpos + depth * 2); //光标回到行首
-    printf(">>目前可用最大层数:%d\n", int(floor(log2(T.maxSize)) + 1));
+    else
+    {
+        int depth = GetSBTDepth(T);
+        int pos_x = pow(2, depth - 2) / 4 * 12 - 1; //根位置
+        int oriYpos = wherey();                     //光标y原始位置
+        gotoxy(pos_x, wherey());
+        PirntSBT(T, 1, depth);
+        gotoxy(0, oriYpos + depth * 2); //光标回到行首
+    }
+
+    printf(">>目前可用最大层数:%d\n", GetSBTMaxSizeDepth(T));
 }
 
 void PirntSBT(SqBiTree T, int p, int depth)
