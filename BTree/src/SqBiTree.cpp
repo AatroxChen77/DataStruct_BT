@@ -209,13 +209,16 @@ Status IsIllegal_SBTNode(SqBiTree T, int p)
         return FALSE;
 }
 
-Status Is_Desendant(SqBiTree T, int u, int v)
+Status Is_Desendant(SqBiTree T, ElemType par, ElemType child)
 {
-    if (IsIllegal_SBTNode(T, u) || IsIllegal_SBTNode(T, v) || v <= u)
+    if (IsIlleagl_SBT(T))
+        return ERROR;
+    int u = SearchSBTNode(T, par), v = SearchSBTNode(T, child);
+    if (u * v == 0 || v <= u)
         return FALSE; //·¶Î§²»ºÏÀí
     while (v > u)
     {
-        v /= 2;
+        v = GetPar(T, v);
         if (v == u)
             return TRUE;
     }

@@ -125,11 +125,11 @@ Status IsIllegal_SBTNode(SqBiTree T, int p);
  * @brief 判断v结点是否为u结点的子孙
  *
  * @param T 包含需判断关系两结点的二叉树
- * @param u 待判断祖先
- * @param v 待判断子孙
+ * @param par 待判断祖先
+ * @param child 待判断子孙
  * @return Status 判断结果信息
  */
-Status Is_Desendant(SqBiTree T, int u, int v);
+Status Is_Desendant(SqBiTree T, ElemType par, ElemType child);
 
 /**
  * @brief 获取某孩子结点的双亲结点下标
@@ -251,6 +251,16 @@ void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p));
  * @return Status
  */
 Status VisitNode(SqBiTree T, int p);
+
+/**
+ * @brief 查询元素a和b最近的共同祖先
+ *
+ * @param T a、b所在的顺序二叉树
+ * @param a 待查元素a
+ * @param b 待查元素b
+ * @return int 最近的共同祖先的下标，若无则返回0
+ */
+int FindCommonAncestor(SqBiTree T, TElemType a, TElemType b);
 
 /**********************************************打印*******************************************************/
 

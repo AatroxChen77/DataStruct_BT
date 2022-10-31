@@ -1,6 +1,6 @@
 #include <test.h>
 
-Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
+Status BuildSBT(SqBiTree &T)
 {
     if (IsIlleagl_SBT(T))
         return ERROR;
@@ -290,7 +290,7 @@ void Test_Traverse(SqBiTree T)
     {
 
         ShowSBT(T);
-        printf("\n【顺序存储二叉树测试:初始化】\n");
+        printf("\n【顺序存储二叉树测试:遍历】\n");
         printf("0.返回\n");
         printf("1.先序遍历\n");
         printf("2.中序遍历\n");
@@ -326,4 +326,20 @@ void Test_Traverse(SqBiTree T)
         system("pause");
         system("cls");
     }
+}
+
+void Test_Is_Desendant(SqBiTree T)
+{
+    TElemType child, par;
+    printf("\n【顺序存储二叉树测试:查询子孙关系】\n");
+    printf(">>请输入待查询的祖先:\n");
+    fflush(stdin);
+    scanf("%c", &par);
+    printf(">>请输入待查询的子孙:\n");
+    fflush(stdin);
+    scanf("%c", &child);
+    if (Is_Desendant(T, par, child) == TRUE)
+        printf("TURE:结点%c是结点%c的祖先\n", par, child);
+    else
+        printf("FALSE/ERROR:结点%c不是结点%c的祖先,或存在非法值!\n", par, child);
 }

@@ -18,5 +18,6 @@ void Test_SearchSBTNode(SqBiTree T);
 void Test_getDegreeN(SqBiTree T);
 void Test_CountDepthNum(SqBiTree T);
 void Test_Traverse(SqBiTree T);
+void Test_Is_Desendant(SqBiTree T);
 
 #endif

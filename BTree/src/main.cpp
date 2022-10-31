@@ -25,7 +25,8 @@ int main()
 		printf("11.求各度数结点个数\n");
 		printf("12.求某深度结点个数\n");
 		printf("13.遍历\n");
-		printf("14.查找最近共同祖先\n");
+		printf("14.判断子孙关系\n");
+		printf("15.查询最近共同祖先\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -77,7 +78,7 @@ int main()
 			Test_Traverse(T);
 			break;
 		case 14:
-			// Test_Find(T);
+			Test_Is_Desendant(T);
 			break;
 		default:
 			printf("ERROR:请重新输入!\n");
