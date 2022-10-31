@@ -17,9 +17,7 @@ int main()
 		printf("3.速建二叉树实例\n");
 		printf("4.销毁二叉树\n");
 		printf("5.插入新结点\n");
-
 		printf("6.删除叶子结点\n");
-
 		printf("7.修改结点\n");
 		printf("8.分解二叉树\n");
 		printf("9.替代子树\n");

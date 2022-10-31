@@ -25,14 +25,15 @@ Status EditSBT(SqBiTree &T)
     while (1)
     {
         ShowSBT(T);
-        printf("\n【编辑二叉树】\n");
+        printf("\n【编辑替换用二叉树:】\n");
         printf("0.退出\n");
         printf("1.初始化二叉树\n");
-        printf("2.速建二叉树实例\n");
-        printf("3.销毁二叉树\n");
-        printf("4.插入新结点\n");
-        printf("5.修改结点\n");
+        printf("2.扩建二叉树\n");
+        printf("3.速建二叉树实例\n");
+        printf("4.销毁二叉树\n");
+        printf("5.插入新结点\n");
         printf("6.删除叶子结点\n");
+        printf("7.修改结点\n");
 
         fflush(stdin);
         scanf("%d", &choice);
@@ -44,22 +45,25 @@ Status EditSBT(SqBiTree &T)
             Test_InitSBT(T);
             break;
         case 2:
+            Test_ExtendSBT(T);
+            break;
+        case 3:
             if (BuildSBT(T) == OK)
                 printf("OK:成功创建\n");
             else
                 printf("ERROR:初始化失败!\n");
             break;
-        case 3:
+        case 4:
             Test_DestroySBT(T);
             break;
-        case 4:
-            Test_InsertSBTNode(T);
-            break;
         case 5:
-            Test_ModifySBTNode(T);
+            Test_InsertSBTNode(T);
             break;
         case 6:
             Test_DeleteSBTLeaf(T);
+            break;
+        case 7:
+            Test_ModifySBTNode(T);
             break;
         default:
             printf("ERROR:错误选择!\n");
