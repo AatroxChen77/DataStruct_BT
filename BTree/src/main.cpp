@@ -17,14 +17,17 @@ int main()
 		printf("3.速建二叉树实例\n");
 		printf("4.销毁二叉树\n");
 		printf("5.插入新结点\n");
-		printf("6.修改结点\n");
-		printf("7.分解二叉树\n");
-		printf("8.替代子树\n");
-		printf("9.查找结点\n");
-		printf("10.求各度数结点个数\n");
-		printf("11.求某深度结点个数\n");
-		printf("12.遍历\n");
-		printf("13.查找最近共同祖先\n");
+
+		printf("6.删除叶子结点\n");
+
+		printf("7.修改结点\n");
+		printf("8.分解二叉树\n");
+		printf("9.替代子树\n");
+		printf("10.查找结点\n");
+		printf("11.求各度数结点个数\n");
+		printf("12.求某深度结点个数\n");
+		printf("13.遍历\n");
+		printf("14.查找最近共同祖先\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -52,27 +55,30 @@ int main()
 			Test_InsertSBTNode(T);
 			break;
 		case 6:
-			Test_ModifySBTNode(T);
+			Test_DeleteSBTLeaf(T);
 			break;
 		case 7:
-			Test_BreakBiTree(T);
+			Test_ModifySBTNode(T);
 			break;
 		case 8:
-			Test_ReplaceSBT(T);
+			Test_BreakBiTree(T);
 			break;
 		case 9:
-			Test_SearchSBTNode(T);
+			Test_ReplaceSBT(T);
 			break;
 		case 10:
-			Test_getDegreeN(T);
+			Test_SearchSBTNode(T);
 			break;
 		case 11:
-			Test_CountDepthNum(T);
+			Test_getDegreeN(T);
 			break;
 		case 12:
-			Test_Traverse(T);
+			Test_CountDepthNum(T);
 			break;
 		case 13:
+			Test_Traverse(T);
+			break;
+		case 14:
 			// Test_Find(T);
 			break;
 		default:

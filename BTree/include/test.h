@@ -9,6 +9,7 @@ void Test_InitSBT(SqBiTree &T);
 void Test_ExtendSBT(SqBiTree &T);
 void Test_DestroySBT(SqBiTree &T);
 void Test_InsertSBTNode(SqBiTree &T);
+void Test_DeleteSBTLeaf(SqBiTree &T);
 void Test_ModifySBTNode(SqBiTree &T);
 void Test_BreakBiTree(SqBiTree &T);
 void Test_ReplaceSBT(SqBiTree &T);

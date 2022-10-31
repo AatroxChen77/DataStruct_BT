@@ -59,7 +59,7 @@ Status EditSBT(SqBiTree &T)
             Test_ModifySBTNode(T);
             break;
         case 6:
-            printf(">>开发中\n");
+            Test_DeleteSBTLeaf(T);
             break;
         default:
             printf("ERROR:错误选择!\n");
@@ -134,6 +134,20 @@ void Test_InsertSBTNode(SqBiTree &T)
         printf("OK:在%c下%c方向插入%c成功!\n", par, tag, e);
     else
         printf("ERROR:在%c下%c方向插入%c失败!非法或元素重复或超出最大可用层数\n", par, tag, e);
+}
+
+void Test_DeleteSBTLeaf(SqBiTree &T)
+{
+    printf("\n【顺序存储二叉树测试:删除叶子结点】\n");
+
+    TElemType leaf;
+    printf(">>请输入要删除的叶子结点的值:\n");
+    fflush(stdin);
+    scanf("%c", &leaf);
+    if (DeleteSBTLeaf(T, leaf) == OK)
+        printf("OK:删除叶子结点%c成功!\n", leaf);
+    else
+        printf("ERROR:删除叶子结点%c失败!\n", leaf);
 }
 
 void Test_ModifySBTNode(SqBiTree &T)

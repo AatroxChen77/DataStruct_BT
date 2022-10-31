@@ -68,6 +68,20 @@ Status InsertSBTNode(SqBiTree &T, TElemType e, TElemType par, char tag)
     return OK;
 }
 
+Status DeleteSBTLeaf(SqBiTree &T, TElemType leaf)
+{
+    //参数检查
+    if (IsIlleagl_SBT(T))
+        return ERROR;
+    int leafIndex = SearchSBTNode(T, leaf);
+    if (IsIllegal_SBTNode(T, leafIndex) || GetRchild(T, leafIndex) != 0 || GetLchild(T, leafIndex) != 0)
+        return ERROR;
+    T.elem[leafIndex] = '#';
+    if (leafIndex == T.lastIndex)
+        T.lastIndex = getLastIndex(T);
+    return OK;
+}
+
 Status DestroySBT(SqBiTree &T)
 {
     //参数检查

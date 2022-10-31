@@ -48,6 +48,15 @@ Status ExtendSBT(SqBiTree &T, int extension);
 Status InsertSBTNode(SqBiTree &T, TElemType e, TElemType par, char tag);
 
 /**
+ * @brief 删除叶子结点
+ *
+ * @param T 操作二叉树
+ * @param leaf 叶子结点的值
+ * @return Status 删除结果信息
+ */
+Status DeleteSBTLeaf(SqBiTree &T, TElemType leaf);
+
+/**
  * @brief 销毁二叉树
  *
  * @param T 要销毁的二叉树
