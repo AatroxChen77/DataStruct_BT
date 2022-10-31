@@ -3,8 +3,12 @@
 /**********************************************基本操作*******************************************************/
 Status InitSBT(SqBiTree &T, int depth)
 {
+    //参数检查
+    if (depth <= 0)
+        return ERROR;
     if (!IsIlleagl_SBT(T))
         DestroySBT(T);
+
     int maxNum = CountMaxNum(depth);
     T.elem = (TElemType *)malloc((maxNum + 1) * sizeof(TElemType));
     if (NULL == T.elem)
@@ -18,8 +22,10 @@ Status InitSBT(SqBiTree &T, int depth)
 
 Status ExtendSBT(SqBiTree &T, int extension)
 {
-    if (IsIlleagl_SBT(T))
+    //参数检查
+    if (IsIlleagl_SBT(T) || extension <= 0)
         return ERROR;
+
     int maxNum = CountMaxNum(GetSBTMaxSizeDepth(T) + extension);
     if (NULL == realloc(T.elem, (maxNum + 1) * sizeof(TElemType)))
         return OVERFLOW;
@@ -31,8 +37,9 @@ Status ExtendSBT(SqBiTree &T, int extension)
 
 Status InsertSBTNode(SqBiTree &T, TElemType e, TElemType par, char tag)
 {
-
-    if (IsIlleagl_SBT(T) || 0 != SearchSBTNode(T, e) || tag != 'L' && tag != 'R' && tag != '#') //树非法||树中已有值为e的结点
+    //参数检查
+    if (IsIlleagl_SBT(T) || 0 != SearchSBTNode(T, e) || tag != 'L' && tag != 'R' && tag != '#')
+        //树非法|树中已有值为e的结点|tag值非法
         return ERROR;
     int p = 0, parIndex = 0;
     if (tag != '#')
@@ -62,6 +69,7 @@ Status InsertSBTNode(SqBiTree &T, TElemType e, TElemType par, char tag)
 
 Status DestroySBT(SqBiTree &T)
 {
+    //参数检查
     if (IsIlleagl_SBT(T))
         return ERROR;
 
@@ -75,8 +83,10 @@ Status DestroySBT(SqBiTree &T)
 
 Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 {
+    //参数检查
     if (IsIlleagl_SBT(T) || e == '#' || SearchSBTNode(T, e) != 0)
         return ERROR;
+
     int p = SearchSBTNode(T, ori);
     if (IsIllegal_SBTNode(T, p))
         return ERROR;
@@ -88,6 +98,7 @@ Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 
 Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 {
+    //参数检查
     int depthT = GetSBTDepth(T);
     InitSBT(L, depthT - 1);
     InitSBT(R, depthT - 1);
@@ -114,7 +125,8 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
 {
 
-    if (IsIlleagl_SBT(T) || IsIlleagl_SBT(re)) //原树或替换用树异常
+    if (IsIlleagl_SBT(T) || IsIlleagl_SBT(re) || tag != 'L' && tag != 'R' && tag != '#')
+        //原树或替换用树异常|tag值非法
         return ERROR;
 
     //若替换后树深度超出最大可用深度,返回错误

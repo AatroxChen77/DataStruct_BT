@@ -89,7 +89,10 @@ void Test_ExtendSBT(SqBiTree &T)
     int extension = 0;
     printf(">>请输入扩建层数\n");
     scanf("%d", &extension);
-    printf(">>需要新申请%d个单位元素的空间!\n", CountMaxNum(extension + GetSBTMaxSizeDepth(T)) - CountMaxNum(GetSBTMaxSizeDepth(T)));
+    if (extension > 0)
+        printf(">>需要新申请%d个单位元素的空间!\n", CountMaxNum(extension + GetSBTMaxSizeDepth(T)) - CountMaxNum(GetSBTMaxSizeDepth(T)));
+    else
+        printf("ERROR:extension值异常!\n");
     if (ExtendSBT(T, extension) == OK)
     {
         printf("OK:扩建%d层成功!\n", extension);
@@ -126,7 +129,7 @@ void Test_InsertSBTNode(SqBiTree &T)
     if (InsertSBTNode(T, e, par, tag) == OK)
         printf("OK:在%c下%c方向插入%c成功!\n", par, tag, e);
     else
-        printf("ERROR:在%c下%c方向插入%c失败!非法或元素已重复\n", par, tag, e);
+        printf("ERROR:在%c下%c方向插入%c失败!非法或元素重复或超出最大可用层数\n", par, tag, e);
 }
 
 void Test_ModifySBTNode(SqBiTree &T)
