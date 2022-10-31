@@ -6,6 +6,13 @@ int main()
 	SqBiTree T;
 	int choice = 0;
 
+	printf("【个人信息】\n>学院:计算机学院\n>专业:计算机科学与技术\n>班级:21级伏羲班\n>姓名:陈以韬\n>学号:3121004647\n");
+	printf("\n【注意事项】\n");
+	printf("1.使用顺序存储结构存储二叉树\n");
+	printf("2.不允许重复元素存在\n");
+	system("pause");
+	system("cls");
+
 	while (1)
 	{
 
