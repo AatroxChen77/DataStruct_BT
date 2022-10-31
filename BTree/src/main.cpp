@@ -80,6 +80,9 @@ int main()
 		case 14:
 			Test_Is_Desendant(T);
 			break;
+		case 15:
+			Test_FindCommonAncestor(T);
+			break;
 		default:
 			printf("ERROR:ÇëÖØĞÂÊäÈë!\n");
 			break;

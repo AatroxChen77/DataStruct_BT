@@ -338,8 +338,27 @@ void Test_Is_Desendant(SqBiTree T)
     printf(">>请输入待查询的子孙:\n");
     fflush(stdin);
     scanf("%c", &child);
-    if (Is_Desendant(T, par, child) == TRUE)
+    int u = SearchSBTNode(T, par), v = SearchSBTNode(T, child);
+    if (Is_Desendant(T, u, v) == TRUE)
         printf("TURE:结点%c是结点%c的祖先\n", par, child);
     else
         printf("FALSE/ERROR:结点%c不是结点%c的祖先,或存在非法值!\n", par, child);
+}
+
+void Test_FindCommonAncestor(SqBiTree T)
+{
+    TElemType a, b;
+    printf("\n【顺序存储二叉树测试:查询最近共同祖先】\n");
+    printf(">>请输入待查询元素1:\n");
+    fflush(stdin);
+    scanf("%c", &a);
+    printf(">>请输入待查询元素2:\n");
+    fflush(stdin);
+    scanf("%c", &b);
+
+    int anceI = FindCommonAncestor(T, SearchSBTNode(T, a), SearchSBTNode(T, b));
+    if (anceI != 0)
+        printf("OK:结点%c与结点%c最近的共同祖先为:%c,下标为:%d\n", a, b, T.elem[anceI], anceI);
+    else
+        printf("ERROR:查询结点%c与结点%c最近的共同祖先失败!可能存在非法值!\n", a, b);
 }

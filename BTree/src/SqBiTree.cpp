@@ -185,6 +185,9 @@ Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
 
 int CountMaxNum(int maxdepth) // 1 2 4 8
 {
+    //参数检查
+    if (maxdepth < 1)
+        return 0;
     int sum = 0;
     for (int i = 0; i < maxdepth; i++)
     {
@@ -209,12 +212,11 @@ Status IsIllegal_SBTNode(SqBiTree T, int p)
         return FALSE;
 }
 
-Status Is_Desendant(SqBiTree T, ElemType par, ElemType child)
+Status Is_Desendant(SqBiTree T, int u, int v)
 {
     if (IsIlleagl_SBT(T))
         return ERROR;
-    int u = SearchSBTNode(T, par), v = SearchSBTNode(T, child);
-    if (u * v == 0 || v <= u)
+    if (IsIllegal_SBTNode(T, u) || IsIllegal_SBTNode(T, v) || v <= u)
         return FALSE; //范围不合理
     while (v > u)
     {
@@ -323,7 +325,8 @@ int getDegreeTwo(SqBiTree T)
 
 int CountDepthNum(SqBiTree T, int depth)
 {
-    if (IsIlleagl_SBT(T))
+    //参数检查
+    if (IsIlleagl_SBT(T) || depth < 1)
         return 0;
     int begin = pow(2, depth - 1), end = pow(2, depth) - 1, sum = 0;
     for (int i = begin; i <= end; i++)
@@ -336,7 +339,8 @@ int CountDepthNum(SqBiTree T, int depth)
 
 void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
         return;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
@@ -347,7 +351,8 @@ void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 
 void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
         return;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
@@ -358,7 +363,8 @@ void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 
 void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root))
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
         return;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
@@ -369,6 +375,9 @@ void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 
 void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p))
 {
+    //参数检查
+    if (IsIlleagl_SBT(T) || NULL == visit)
+        return;
     for (int i = 1; i <= T.lastIndex; i++)
     {
         if (!IsIllegal_SBTNode(T, i))
@@ -378,10 +387,29 @@ void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p))
 
 Status VisitNode(SqBiTree T, int p)
 {
-    if (IsIllegal_SBTNode(T, p))
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, p))
         return ERROR;
     printf("%c|", T.elem[p]);
     return OK;
+}
+
+int FindCommonAncestor(SqBiTree T, int a, int b)
+{
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, a) || IsIllegal_SBTNode(T, b))
+        return 0;
+    if (Is_Desendant(T, a, b) || Is_Desendant(T, b, a))
+        //二者存在子孙关系
+        return 0;
+    //二者均合法，必存在共同祖先，任取其一求其双亲判断是否为另一结点的双亲，直到根节点或是为止
+    while (!IsIllegal_SBTNode(T, a))
+    {
+        a = GetPar(T, a);
+        if (Is_Desendant(T, a, b))
+            return a;
+    }
+    return 0;
 }
 
 /**********************************************打印*******************************************************/
