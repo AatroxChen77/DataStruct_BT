@@ -7,14 +7,19 @@ Status BuildSBT(SqBiTree &T)
     int num = T.maxSize - 3, i;
     if (num <= 0)
         num = T.maxSize;
+    if (T.maxSize >= 52)
+        num = 40;
 
     T.lastIndex = num;
 
     for (i = 1; i <= 26 && num > 0; i++, num--)
         T.elem[i] = (char)('a' + i - 1);
-    for (; num > 0; i++, num--)
+    while (num > 0)
+    {
         T.elem[i] = (char)('A' + i - 27);
-
+        i++;
+        num--;
+    }
     return OK;
 }
 
