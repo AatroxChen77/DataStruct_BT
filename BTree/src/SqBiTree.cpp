@@ -30,6 +30,7 @@ Status ExtendSBT(SqBiTree &T, int extension)
     if (NULL == realloc(T.elem, (maxNum + 1) * sizeof(TElemType)))
         return OVERFLOW;
     for (int i = T.maxSize + 1; i <= maxNum; i++)
+        //扩建部分赋空
         T.elem[i] = '#';
     T.maxSize = maxNum;
     return OK;
@@ -124,18 +125,44 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 
 Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
 {
-
+    //参数检查
     if (IsIlleagl_SBT(T) || IsIlleagl_SBT(re) || tag != 'L' && tag != 'R' && tag != '#')
         //原树或替换用树异常|tag值非法
         return ERROR;
-
-    //若替换后树深度超出最大可用深度,返回错误
-    // if (GetSBTDepth(re) > int(floor(log2(T.maxSize)) + 1))
-    //     return ERROR;
-
-    if (tag == 'L')
-    { //替换左子树
+    for (int i = 1; i <= re.lastIndex; i++)
+    { //重复性检查
+        if (SearchSBTNode(T, re.elem[i]) != 0)
+            return ERROR;
     }
+
+    int dep_re = GetSBTMaxSizeDepth(re);
+    int ext = dep_re - (GetSBTMaxSizeDepth(T) - 1);
+    if (ext > 0)
+    { //替换后树深度超出原树最大可用深度,扩建
+        if (ExtendSBT(T, ext) == ERROR)
+            return ERROR;
+    }
+    else if (ext < 0)
+    { // re原深度不足返回被替换子树
+        if (ExtendSBT(re, -ext) == ERROR)
+            return ERROR;
+    }
+
+    // re和T的被替换子树可用大小一致,逐一交换即可
+
+    int dep_i = 0, j = 0;
+    for (int i = 1; i <= re.maxSize; i++)
+    {
+        dep_i = (int)(floor(log2(i)) + 1);
+        j = i + pow(2, dep_i - 1);
+        if (tag == 'R')
+        { //替换=右子树
+            j += pow(2, dep_i - 1);
+        }
+        swap(re.elem[i], T.elem[j]);
+    }
+    T.lastIndex = getLastIndex(T);
+    re.lastIndex = getLastIndex(re);
 
     return OK;
 }
@@ -408,4 +435,12 @@ void PirntSBT(SqBiTree T, int p, int depth)
         gotoxy(rpos, pos_y + 2);
         PirntSBT(T, rchild, depth - 1);
     }
+}
+
+/**********************************************其他*******************************************************/
+void swap(TElemType &a, TElemType &b)
+{
+    TElemType temp = a;
+    a = b;
+    b = temp;
 }

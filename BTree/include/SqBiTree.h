@@ -277,4 +277,14 @@ void ShowSBT(SqBiTree T);
  */
 void PirntSBT(SqBiTree T, int p, int depth); //递归打印二叉树
 
+/**********************************************其他*******************************************************/
+
+/**
+ * @brief 交换两个参数的值
+ *
+ * @param a 待交换参数1
+ * @param b 待交换参数2
+ */
+void swap(TElemType &a, TElemType &b);
+
 #endif

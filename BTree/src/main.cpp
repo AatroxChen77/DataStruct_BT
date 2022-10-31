@@ -58,7 +58,7 @@ int main()
 			Test_BreakBiTree(T);
 			break;
 		case 8:
-			// Test_ReplaceSBT(T);
+			Test_ReplaceSBT(T);
 			break;
 		case 9:
 			Test_SearchSBTNode(T);

@@ -5,6 +5,9 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
     if (IsIlleagl_SBT(T))
         return ERROR;
     int num = T.maxSize - 3, i;
+    if (num <= 0)
+        num = T.maxSize;
+
     T.lastIndex = num;
 
     for (i = 1; i <= 26 && num > 0; i++, num--)
@@ -17,6 +20,7 @@ Status BuildSBT(SqBiTree &T) // TODO:调整元素计算公式，使之只含字母
 
 Status EditSBT(SqBiTree &T)
 {
+    system("cls");
     int choice = 0;
     while (1)
     {
@@ -190,9 +194,9 @@ void Test_ReplaceSBT(SqBiTree &T)
         return;
     case 1:
         InitSBT(re, 2);
-        InsertSBTNode(re, 'A', '#', '#');
-        InsertSBTNode(re, 'B', 'A', 'L');
-        InsertSBTNode(re, 'C', 'A', 'R');
+        InsertSBTNode(re, 'X', '#', '#');
+        InsertSBTNode(re, 'Y', 'X', 'L');
+        InsertSBTNode(re, 'Z', 'X', 'R');
         break;
     case 2:
         //编辑二叉树函数并返回
@@ -219,6 +223,7 @@ void Test_ReplaceSBT(SqBiTree &T)
     }
     else
         printf("ERROR:替换原树%c子树失败!\n", tag);
+    DestroySBT(re);
 }
 
 void Test_SearchSBTNode(SqBiTree T)
