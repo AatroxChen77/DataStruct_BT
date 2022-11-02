@@ -195,14 +195,16 @@ Status DeleteSubTree(SqBiTree &T, int x)
 
 Status DeleteSubTree_recur(SqBiTree &T, int x)
 {
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, x))
+    //参数检查
+    if (IsIllegal_SBTNode(T, x))
         return OK;
+    //删除当前根节点
     T.elem[x] = '#';
-    int l = GetLchild(T, x), r = GetRchild(T, x);
-    if (!IsIllegal_SBTNode(T, l))
-        DeleteSubTree(T, l);
-    if (!IsIllegal_SBTNode(T, r))
-        DeleteSubTree(T, r);
+    //获取左右子树的根下标
+    int l = 2 * x, r = 2 * x + 1;
+    //删除左右子树
+    DeleteSubTree_recur(T, l);
+    DeleteSubTree_recur(T, r);
     return OK;
 }
 
