@@ -181,6 +181,31 @@ Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
     return OK;
 }
 
+Status DeleteSubTree(SqBiTree &T, int x)
+{
+    //参数检查
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, x))
+        return ERROR;
+    //递归函数
+    DeleteSubTree_recur(T, x);
+    //重新计算最后结点的下标
+    T.lastIndex = getLastIndex(T);
+    return OK;
+}
+
+Status DeleteSubTree_recur(SqBiTree &T, int x)
+{
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, x))
+        return OK;
+    T.elem[x] = '#';
+    int l = GetLchild(T, x), r = GetRchild(T, x);
+    if (!IsIllegal_SBTNode(T, l))
+        DeleteSubTree(T, l);
+    if (!IsIllegal_SBTNode(T, r))
+        DeleteSubTree(T, r);
+    return OK;
+}
+
 /**********************************************信息获取*******************************************************/
 
 int CountMaxNum(int maxdepth) // 1 2 4 8

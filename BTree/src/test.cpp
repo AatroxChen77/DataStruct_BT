@@ -249,6 +249,23 @@ void Test_ReplaceSBT(SqBiTree &T)
     DestroySBT(re);
 }
 
+void Test_DeleteSubTree(SqBiTree &T)
+{
+    printf("\n【顺序存储二叉树测试:删除指定子树】\n");
+    TElemType x;
+    printf(">>请输入要删除的子树的根结点的的值:\n");
+    fflush(stdin);
+    scanf("%c", &x);
+    int x_i = SearchSBTNode(T, x);
+    if (!IsIllegal_SBTNode(T, x_i))
+    {
+        DeleteSubTree(T, x_i);
+        printf("OK:删除以%c为根结点的子树成功!", x);
+    }
+    else
+        printf("ERROR:删除以%c为根结点的子树失败!", x);
+}
+
 void Test_SearchSBTNode(SqBiTree T)
 {
     printf("\n【顺序存储二叉树测试:查找结点】\n");

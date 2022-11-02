@@ -13,6 +13,7 @@ void Test_DeleteSBTLeaf(SqBiTree &T);
 void Test_ModifySBTNode(SqBiTree &T);
 void Test_BreakBiTree(SqBiTree &T);
 void Test_ReplaceSBT(SqBiTree &T);
+void Test_DeleteSubTree(SqBiTree &T);
 
 void Test_SearchSBTNode(SqBiTree T);
 void Test_getDegreeN(SqBiTree T);

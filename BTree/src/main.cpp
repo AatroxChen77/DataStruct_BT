@@ -6,7 +6,10 @@ int main()
 	SqBiTree T;
 	int choice = 0;
 
-	printf("【个人信息】\n>学院:计算机学院\n>专业:计算机科学与技术\n>班级:21级伏羲班\n>姓名:陈以韬\n>学号:3121004647\n");
+	printf("【个人信息】\n");
+	printf(">学院:计算机学院\n>专业:计算机科学与技术\n");
+	printf(">班级:21级伏羲班\n>姓名:陈以韬\n>学号:3121004647\n");
+	printf(">完成时间:2022年11月2日\n");
 	printf("\n【注意事项】\n");
 	printf("1.使用顺序存储结构存储二叉树\n");
 	printf("2.不允许重复元素存在\n");
@@ -28,12 +31,13 @@ int main()
 		printf("7.修改结点\n");
 		printf("8.分解二叉树\n");
 		printf("9.替代子树\n");
-		printf("10.查找结点\n");
-		printf("11.求各度数结点个数\n");
-		printf("12.求某深度结点个数\n");
-		printf("13.遍历\n");
-		printf("14.判断子孙关系\n");
-		printf("15.查询最近共同祖先\n");
+		printf("10.删除指定子树\n");
+		printf("11.查找结点\n");
+		printf("12.求各度数结点个数\n");
+		printf("13.求某深度结点个数\n");
+		printf("14.遍历\n");
+		printf("15.判断子孙关系\n");
+		printf("16.查询最近共同祖先\n");
 		printf(">>请输入相应操作的序号:\n");
 		scanf("%d", &choice);
 		switch (choice)
@@ -73,21 +77,24 @@ int main()
 			Test_ReplaceSBT(T);
 			break;
 		case 10:
-			Test_SearchSBTNode(T);
+			Test_DeleteSubTree(T);
 			break;
 		case 11:
-			Test_getDegreeN(T);
+			Test_SearchSBTNode(T);
 			break;
 		case 12:
-			Test_CountDepthNum(T);
+			Test_getDegreeN(T);
 			break;
 		case 13:
-			Test_Traverse(T);
+			Test_CountDepthNum(T);
 			break;
 		case 14:
-			Test_Is_Desendant(T);
+			Test_Traverse(T);
 			break;
 		case 15:
+			Test_Is_Desendant(T);
+			break;
+		case 16:
 			Test_FindCommonAncestor(T);
 			break;
 		default:

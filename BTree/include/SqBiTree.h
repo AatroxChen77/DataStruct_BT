@@ -94,6 +94,24 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R);
  */
 Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re);
 
+/**
+ * @brief 删除以x值为根的子树(函数入口)
+ *
+ * @param T 操作二叉树
+ * @param x 目标删除子树的根的下标
+ * @return Status 删除结果信息
+ */
+Status DeleteSubTree(SqBiTree &T, int x);
+
+/**
+ * @brief 删除以x值为根的子树(递归主体)
+ *
+ * @param T 操作二叉树
+ * @param x 目标删除子树的根的下标
+ * @return Status 删除结果信息
+ */
+Status DeleteSubTree_recur(SqBiTree &T, int x);
+
 /**********************************************信息获取*******************************************************/
 
 /**
