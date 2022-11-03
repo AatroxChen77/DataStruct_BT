@@ -27,13 +27,4 @@
 //常用类型定义
 typedef int Status;
 
-typedef int ElemType;
-typedef int KeyType; //关键字类型
-
-typedef struct
-{
-    KeyType key;
-    //...其他数据项
-} RecordType, RcdType; //记录类型，RcdType为RecordType的简写
-
 #endif
