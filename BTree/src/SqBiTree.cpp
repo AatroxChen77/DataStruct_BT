@@ -99,7 +99,7 @@ Status DestroySBT(SqBiTree &T)
 Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 {
     //²ÎÊý¼ì²é
-    if (IsIlleagl_SBT(T) || SearchSBTNode(T, e) != 0)
+    if (IsIlleagl_SBT(T) || e == '#' || SearchSBTNode(T, e) != 0)
         return ERROR;
 
     int p = SearchSBTNode(T, ori);
@@ -107,7 +107,6 @@ Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
         return ERROR;
     else
         T.elem[p] = e;
-
     return OK;
 }
 
