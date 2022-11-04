@@ -114,6 +114,8 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 {
     //²ÎÊý¼ì²é
     int depthT = GetSBTDepth(T);
+    if (depthT <= 1)
+        return ERROR;
     InitSBT(L, depthT - 1);
     InitSBT(R, depthT - 1);
     if (IsIlleagl_SBT(T) || IsIlleagl_SBT(R) || IsIlleagl_SBT(L))
