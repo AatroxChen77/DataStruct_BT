@@ -37,7 +37,7 @@ Status InitSBT(SqBiTree &T, int depth);
 Status ExtendSBT(SqBiTree &T, int extension);
 
 /**
- * @brief 在二叉树下标p处插入值为e的结点
+ * @brief 在二叉树par某孩子处插入值为e的结点
  *
  * @param T 要插入的二叉树
  * @param e 结点的值

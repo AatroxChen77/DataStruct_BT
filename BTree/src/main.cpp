@@ -13,6 +13,7 @@ int main()
 	printf("\n【注意事项】\n");
 	printf("1.使用顺序存储结构存储二叉树\n");
 	printf("2.不允许重复元素存在\n");
+	printf("3.\'#\'表示空结点\n");
 	system("pause");
 	system("cls");
 

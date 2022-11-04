@@ -39,7 +39,7 @@ Status ExtendSBT(SqBiTree &T, int extension)
 Status InsertSBTNode(SqBiTree &T, TElemType e, TElemType par, char tag)
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || 0 != SearchSBTNode(T, e) || tag != 'L' && tag != 'R' && tag != '#')
+    if (IsIlleagl_SBT(T) || e == '#' || 0 != SearchSBTNode(T, e) || tag != 'L' && tag != 'R' && tag != '#')
         //树非法|树中已有值为e的结点|tag值非法
         return ERROR;
     int p = 0, parIndex = 0;
@@ -99,7 +99,7 @@ Status DestroySBT(SqBiTree &T)
 Status ModifySBTNode(SqBiTree &T, TElemType ori, TElemType e)
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || e == '#' || SearchSBTNode(T, e) != 0)
+    if (IsIlleagl_SBT(T) || SearchSBTNode(T, e) != 0)
         return ERROR;
 
     int p = SearchSBTNode(T, ori);
@@ -280,7 +280,7 @@ int GetRchild(SqBiTree T, int par)
 
 int SearchSBTNode(SqBiTree T, TElemType e)
 {
-    if (IsIlleagl_SBT(T))
+    if (IsIlleagl_SBT(T) || e == '#')
         return 0;
     for (int i = 1; i <= T.lastIndex; i++)
     {
