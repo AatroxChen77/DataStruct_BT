@@ -383,52 +383,56 @@ int CountDepthNum(SqBiTree T, int depth)
     return sum;
 }
 
-void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+Status PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
-        return;
+    if (IsIlleagl_SBT(T) || T.lastIndex < 1 || IsIllegal_SBTNode(T, root) || NULL == visit)
+        return ERROR;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
     visit(T, root);
     PreTraverse(T, lChild, visit);
     PreTraverse(T, rChild, visit);
+    return OK;
 }
 
-void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+Status MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
-        return;
+    if (IsIlleagl_SBT(T) || T.lastIndex < 1 || IsIllegal_SBTNode(T, root) || NULL == visit)
+        return ERROR;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
     MidTraverse(T, lChild, visit);
     visit(T, root);
     MidTraverse(T, rChild, visit);
+    return OK;
 }
 
-void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
+Status PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p))
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, root) || NULL == visit)
-        return;
+    if (IsIlleagl_SBT(T) || T.lastIndex < 1 || IsIllegal_SBTNode(T, root) || NULL == visit)
+        return ERROR;
     int lChild = GetLchild(T, root);
     int rChild = GetRchild(T, root);
     PostTraverse(T, lChild, visit);
     PostTraverse(T, rChild, visit);
     visit(T, root);
+    return OK;
 }
 
-void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p))
+Status LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p))
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || NULL == visit)
-        return;
+    if (IsIlleagl_SBT(T) || T.lastIndex < 1 || NULL == visit)
+        return ERROR;
     for (int i = 1; i <= T.lastIndex; i++)
     {
         if (!IsIllegal_SBTNode(T, i))
             visit(T, i);
     }
+    return OK;
 }
 
 Status VisitNode(SqBiTree T, int p)

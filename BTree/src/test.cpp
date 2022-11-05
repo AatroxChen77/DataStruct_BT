@@ -330,20 +330,28 @@ void Test_Traverse(SqBiTree T)
             return;
             break;
         case 1:
-            PreTraverse(T, 1, VisitNode);
-            printf("\n");
+            if (PreTraverse(T, 1, VisitNode) == OK)
+                printf("\nOK:先序遍历成功!\n");
+            else
+                printf("ERROR:先序遍历失败!\n");
             break;
         case 2:
-            MidTraverse(T, 1, VisitNode);
-            printf("\n");
+            if (MidTraverse(T, 1, VisitNode) == OK)
+                printf("\nOK:中序遍历成功!\n");
+            else
+                printf("ERROR:中序遍历失败!\n");
             break;
         case 3:
-            PostTraverse(T, 1, VisitNode);
-            printf("\n");
+            if (PostTraverse(T, 1, VisitNode) == OK)
+                printf("\nOK:后序遍历成功!\n");
+            else
+                printf("ERROR:后序遍历失败!\n");
             break;
         case 4:
-            LevelTraverse(T, VisitNode);
-            printf("\n");
+            if (LevelTraverse(T, VisitNode) == OK)
+                printf("\nOK:层次遍历成功!\n");
+            else
+                printf("ERROR:层次遍历失败!\n");
             break;
         default:
             printf("ERROR:请重新输入!\n");

@@ -235,7 +235,7 @@ int CountDepthNum(SqBiTree T, int depth);
  * @param root 当前递归层次的根结点下标
  * @param visit 访问函数
  */
-void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+Status PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
 
 /**
  * @brief 中序遍历二叉树
@@ -244,7 +244,7 @@ void PreTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
  * @param root 当前递归层次的根结点下标
  * @param visit 访问函数
  */
-void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+Status MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
 
 /**
  * @brief 后序遍历二叉树
@@ -253,7 +253,7 @@ void MidTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
  * @param root 当前递归层次的根结点下标
  * @param visit 访问函数
  */
-void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
+Status PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
 
 /**
  * @brief 层次遍历二叉树
@@ -261,7 +261,7 @@ void PostTraverse(SqBiTree T, int root, Status (*visit)(SqBiTree T, int p));
  * @param T 目标二叉树
  * @param visit 访问函数
  */
-void LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p));
+Status LevelTraverse(SqBiTree T, Status (*visit)(SqBiTree T, int p));
 
 /**
  * @brief 遍历用访问函数
