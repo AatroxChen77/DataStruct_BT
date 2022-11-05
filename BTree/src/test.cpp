@@ -39,6 +39,7 @@ Status EditSBT(SqBiTree &T)
         printf("5.插入新结点\n");
         printf("6.删除叶子结点\n");
         printf("7.修改结点\n");
+        printf("8.删除指定子树\n");
 
         fflush(stdin);
         scanf("%d", &choice);
@@ -69,6 +70,9 @@ Status EditSBT(SqBiTree &T)
             break;
         case 7:
             Test_ModifySBTNode(T);
+            break;
+        case 8:
+            Test_DeleteSubTree(T);
             break;
         default:
             printf("ERROR:错误选择!\n");

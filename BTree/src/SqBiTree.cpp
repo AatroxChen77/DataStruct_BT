@@ -4,7 +4,7 @@
 Status InitSBT(SqBiTree &T, int depth)
 {
     //参数检查
-    if (depth <= 0)
+    if (depth <= 0 || depth > MAXLEVEL)
         return ERROR;
     if (!IsIlleagl_SBT(T))
         DestroySBT(T);
@@ -23,12 +23,14 @@ Status InitSBT(SqBiTree &T, int depth)
 Status ExtendSBT(SqBiTree &T, int extension)
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || extension <= 0)
+    if (IsIlleagl_SBT(T) || extension <= 0 || (extension + GetSBTMaxSizeDepth(T)) > MAXLEVEL)
         return ERROR;
 
     int maxNum = CountMaxNum(GetSBTMaxSizeDepth(T) + extension);
-    if (NULL == realloc(T.elem, (maxNum + 1) * sizeof(TElemType)))
+    TElemType *temp = (TElemType *)realloc(T.elem, (maxNum + 1) * sizeof(TElemType));
+    if (NULL == temp)
         return OVERFLOW;
+    T.elem = temp;
     for (int i = T.maxSize + 1; i <= maxNum; i++)
         //扩建部分赋空
         T.elem[i] = '#';
