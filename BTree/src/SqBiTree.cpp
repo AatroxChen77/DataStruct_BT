@@ -447,7 +447,7 @@ Status VisitNode(SqBiTree T, int p)
 int FindCommonAncestor(SqBiTree T, int a, int b)
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, a) || IsIllegal_SBTNode(T, b))
+    if (a == b || IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, a) || IsIllegal_SBTNode(T, b))
         return 0;
     if (Is_Desendant(T, a, b) || Is_Desendant(T, b, a))
         //二者存在子孙关系
