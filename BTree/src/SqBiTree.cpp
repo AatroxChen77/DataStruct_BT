@@ -141,7 +141,7 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
 Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
 {
     //参数检查
-    if (IsIlleagl_SBT(T) || IsIlleagl_SBT(re) || tag != 'L' && tag != 'R' && tag != '#')
+    if (IsIlleagl_SBT(T) || T.lastIndex == 0 || IsIlleagl_SBT(re) || re.lastIndex == 0 || tag != 'L' && tag != 'R' && tag != '#')
         //原树或替换用树异常|tag值非法
         return ERROR;
     for (int i = 1; i <= re.lastIndex; i++)
