@@ -16,7 +16,7 @@ typedef struct
     int maxSize;     //顺序二叉树最大存储容量
 } SqBiTree;
 
-#define MAXLEVEL 15//二叉树最大层数限制
+#define MAXLEVEL 15 //二叉树最大层数限制
 
 /**********************************************基本操作*******************************************************/
 
@@ -325,5 +325,15 @@ void PirntSBT(SqBiTree T, int p, int depth); //递归打印二叉树
  * @param b 待交换参数2
  */
 void swap(TElemType &a, TElemType &b);
+
+/**
+ * @brief 判断下标p所在结点是否在二叉树T的tag子树中
+ *
+ * @param T 目标二叉树
+ * @param tag 方向：'L'为左子树、'R'为右子树
+ * @param p 下标
+ * @return Status 判断结果信息
+ */
+Status isInSubTree(SqBiTree T, char tag, int p);
 
 #endif

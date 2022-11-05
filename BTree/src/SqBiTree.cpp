@@ -140,15 +140,31 @@ Status BreakBiTree(SqBiTree &T, SqBiTree &L, SqBiTree &R)
     return OK;
 }
 
+Status isInSubTree(SqBiTree T, char tag, int p)
+{
+    if (IsIlleagl_SBT(T) || IsIllegal_SBTNode(T, p) || tag != 'L' && tag != 'R')
+        //不在T中
+        return FALSE;
+    int dep = (int)(floor(log2(p)) + 1); // p所在层次
+    int R_line = pow(2, dep - 1) / 2 + pow(2, dep - 1);
+    if (tag == 'L' && p < R_line || tag == 'R' && p >= R_line)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 Status ReplaceSBT(SqBiTree &T, char tag, SqBiTree &re)
 {
     //参数检查
     if (IsIlleagl_SBT(T) || T.lastIndex == 0 || IsIlleagl_SBT(re) || re.lastIndex == 0 || tag != 'L' && tag != 'R' && tag != '#')
         //原树或替换用树异常|tag值非法
         return ERROR;
-    for (int i = 1; i <= re.lastIndex; i++)
+
+    for (int i = 1, p = 0; i <= re.lastIndex; i++)
     { //重复性检查
-        if (SearchSBTNode(T, re.elem[i]) != 0)
+        p = SearchSBTNode(T, re.elem[i]);
+        //重复性判断范围：除了被替换子树以外的其他元素
+        if (p != 0 && !isInSubTree(T, tag, p))
             return ERROR;
     }
 
